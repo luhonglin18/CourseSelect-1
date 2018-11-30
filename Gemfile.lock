@@ -1,5 +1,5 @@
 GEM
-  remote: https://gems.ruby-china.com/
+  remote: https://rubygems.org/
   specs:
     actionmailer (4.2.5.2)
       actionpack (= 4.2.5.2)
@@ -255,6 +255,7 @@ DEPENDENCIES
   faker (~> 1.6.3)
   jbuilder (~> 2.0)
   jquery-rails
+  json (= 1.8.5)
   paper_trail
   paperclip
   pg (~> 0.18.4)
@@ -276,4 +277,4 @@ DEPENDENCIES
   will_paginate (~> 3.1.6)
 
 BUNDLED WITH
-   1.14.6
+   1.15.4
