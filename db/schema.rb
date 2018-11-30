@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20161109084337) do
     t.string   "teaching_type"
     t.string   "exam_type"
     t.string   "credit"
-    t.integer  "limit_num"
+    t.integer  "limit_num",     default: 0
     t.integer  "student_num",   default: 0
     t.string   "class_room"
     t.string   "course_time"
@@ -34,10 +34,22 @@ ActiveRecord::Schema.define(version: 20161109084337) do
     t.boolean  "open",          default: false
   end
 
+  create_table "selections", force: :cascade do |t|
+    t.integer  "course_id",
+    t.integer  "user_id",
+    t.integer  "points",
+    t.boolean  "fixed",
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "selections", ["course_id"], name: "index_selections_on_course_id", using: :btree
+  add_index "selections", ["user_id"], name: "index_selections_on_user_id", using: :btree
+
   create_table "grades", force: :cascade do |t|
-    t.integer  "course_id"
-    t.integer  "user_id"
-    t.integer  "grade"
+    t.integer  "course_id",
+    t.integer  "user_id",
+    t.integer  "grade", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

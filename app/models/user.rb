@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
 
   has_many :grades
-  has_many :courses, through: :grades
+  has_many :selections
+  has_many :courses, through: :selections
 
   has_many :teaching_courses, class_name: "Course", foreign_key: :teacher_id
 
