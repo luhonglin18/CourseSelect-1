@@ -162,8 +162,8 @@ end
 
   course_array=(1..34).to_a.sort { rand() - 0.5 }[1..rand(4..8)]
   course_array.each do |index|
-    course_tmp=Course.find(index);
-    student.courses<<course_tmp;
+    course_tmp=Course.find(index)
+    student.courses<<course_tmp
     course_tmp.student_num=course_tmp.student_num+1;
   end
 
