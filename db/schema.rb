@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20161109084337) do
   create_table "grades", force: :cascade do |t|
     t.integer  "course_id"
     t.integer  "user_id"
-    t.integer  "grade", default: 0
+    t.integer  "grade"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
