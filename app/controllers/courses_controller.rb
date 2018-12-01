@@ -59,15 +59,17 @@ class CoursesController < ApplicationController
 
   def list
     #-------QiaoCode--------
-    @courses = Course.where(:open=>true).paginate(page: params[:page], per_page: 4)
-    @course = @courses-current_user.courses
-    tmp=[]
-    @course.each do |course|
-      if course.open==true
-        tmp<<course
-      end
-    end
-    @course=tmp
+    #Contemporily close the open option.
+    #@courses = Course.where(:open=>true).paginate(page: params[:page], per_page: 4)
+    @courses = Course.paginate(page: params[:page], per_page: 4)
+    @courses = @courses-current_user.courses
+    #tmp=[]
+    #@courses.each do |course|
+    #  if course.open==true
+    #    tmp<<course
+    #  end
+    #end
+    #@course=tmp
   end
 
   def select
