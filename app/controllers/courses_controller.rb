@@ -77,6 +77,7 @@ class CoursesController < ApplicationController
     else
       current_user.courses<<@course
       @course.student_num=course.student_num+1;
+      @course.save
       flash={:suceess => "成功选择课程: #{@course.name}"}
     end
     redirect_to courses_path, flash: flash
