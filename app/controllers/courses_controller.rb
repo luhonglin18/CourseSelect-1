@@ -76,7 +76,7 @@ class CoursesController < ApplicationController
       flash={:suceess => "选择课程: #{@course.name} 失败，人数已满"}
     else
       current_user.courses<<@course
-      @course.student_num=course.student_num+1;
+      @course.student_num=@course.student_num+1;
       @course.save
       flash={:suceess => "成功选择课程: #{@course.name}"}
     end
@@ -86,7 +86,7 @@ class CoursesController < ApplicationController
   def quit
     @course=Course.find_by_id(params[:id])
     current_user.courses.delete(@course)
-    @course.student_num=course.student_num-1;
+    @course.student_num=@course.student_num-1;
     @course.save
     flash={:success => "成功退选课程: #{@course.name}"}
     redirect_to courses_path, flash: flash
