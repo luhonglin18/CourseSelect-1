@@ -61,7 +61,7 @@ class CoursesController < ApplicationController
     #-------QiaoCode--------
     #Contemporily close the open option.
     #@courses = Course.where(:open=>true).paginate(page: params[:page], per_page: 4)
-    @courses = Course.paginate(page: params[:page], per_page: 4)
+    @courses = Course.all.paginate(page: params[:page], per_page: 4)
     @courses = @courses-current_user.courses
     #tmp=[]
     #@courses.each do |course|
