@@ -12,12 +12,8 @@ class Course < ActiveRecord::Base
   validates :limit_num, numericality: {greater_than_or_equal_to: 0}
 
   def init
-    if self.student_num==nil 
-      self.student_num=0
-    end
-    if self.limit_num==nil 
-      self.limit_num=0
-    end
+    self.student_num ||= 0
+    self.limit_num ||= 0
   end
 
 end

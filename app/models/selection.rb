@@ -6,11 +6,7 @@ class Selection < ActiveRecord::Base
     validates :points, numericality: {greater_than_or_equal_to: 0}
 
     def init
-      if self.points==nil 
-        self.points=0
-      end
-      if self.fixed==nil
-        self.fixed=false
-      end
+      self.points=0
+      self.fixed=false
     end
   end
