@@ -1,6 +1,6 @@
 class Course < ActiveRecord::Base
 
-  after_create :init
+  after_initialize :init
   has_many :grades
   has_many :selections
   has_many :users, through: :selections
