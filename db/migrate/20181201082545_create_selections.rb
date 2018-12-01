@@ -4,7 +4,7 @@ class CreateSelections < ActiveRecord::Migration
         t.belongs_to :course, index: true
         t.belongs_to :user, index: true
         t.integer  :points
-        t.boolean  :fixed, default: false
+        t.boolean  :fixed
         t.timestamps null: false
       end
     end

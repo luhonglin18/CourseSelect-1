@@ -1,5 +1,6 @@
 class Course < ActiveRecord::Base
 
+  after_create :init
   has_many :grades
   has_many :selections
   has_many :users, through: :selections
@@ -10,5 +11,13 @@ class Course < ActiveRecord::Base
   validates :student_num, numericality: {greater_than_or_equal_to: 0}
   validates :limit_num, numericality: {greater_than_or_equal_to: 0}
 
+  def init
+    if self.student_num==nil 
+      self.student_num=0
+    end
+    if self.limit_num==nil 
+      self.limit_num=0
+    end
+  end
 
 end

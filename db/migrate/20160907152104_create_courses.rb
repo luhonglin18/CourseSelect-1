@@ -9,7 +9,7 @@ class CreateCourses < ActiveRecord::Migration
       t.string :exam_type
       t.string :credit
       t.integer :limit_num
-      t.integer :student_num, default: 0
+      t.integer :student_num
       t.string :class_room
       t.string :course_time
       t.string :course_week
