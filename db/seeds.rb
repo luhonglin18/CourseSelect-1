@@ -165,6 +165,7 @@ end
     course_tmp=Course.find(index)
     student.courses<<course_tmp
     course_tmp.student_num=course_tmp.student_num+1;
+    course_tmp.update()
   end
 
 end
