@@ -69,6 +69,20 @@ class CoursesController < ApplicationController
     end
     @course=tmp
   end
+  
+  def credit
+    @courses=current_user.courses
+    tmp=[]
+    @credits=0
+    @courses.each do |course|
+      @credits+=course.credit.to_i
+      if course.course_type =='公共必修课'
+        tmp<<course
+      end
+    end
+    @credits/=20
+    @courses=tmp
+  end
 
   def select
     @course=Course.find_by_id(params[:id])
