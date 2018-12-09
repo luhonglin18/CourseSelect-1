@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109084337) do
+ActiveRecord::Schema.define(version: 20181201082545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20161109084337) do
     t.string   "exam_type"
     t.string   "credit"
     t.integer  "limit_num"
-    t.integer  "student_num",   default: 0
+    t.integer  "student_num"
     t.string   "class_room"
     t.string   "course_time"
     t.string   "course_week"
@@ -44,6 +44,18 @@ ActiveRecord::Schema.define(version: 20161109084337) do
 
   add_index "grades", ["course_id"], name: "index_grades_on_course_id", using: :btree
   add_index "grades", ["user_id"], name: "index_grades_on_user_id", using: :btree
+
+  create_table "selections", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.integer  "points"
+    t.boolean  "fixed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "selections", ["course_id"], name: "index_selections_on_course_id", using: :btree
+  add_index "selections", ["user_id"], name: "index_selections_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
