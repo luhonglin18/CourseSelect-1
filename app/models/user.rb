@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   attr_accessor :remember_token
   validates :name, presence: true, length: {maximum: 50}
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
+  after_initialize :init
 
   has_many :grades
   has_many :selections
@@ -15,6 +16,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: {maximum: 255},
             format: {with: VALID_EMAIL_REGEX},
             uniqueness: {case_sensitive: false}
+  validates :points, numericality: {greater_than_or_equal_to: 0}
 
   #1. The ability to save a securely hashed password_digest attribute to the database
   #2. A pair of virtual attributes (password and password_confirmation), including presence validations upon object creation and a validation requiring that they match
@@ -54,6 +56,10 @@ class User < ActiveRecord::Base
 
   def downcase_email
     self.email = email.downcase
+  end
+
+  def init
+    self.points||=0;
   end
 
 end
