@@ -1,6 +1,13 @@
 class CourseAssignmentController < ApplicationController
     
-    before_action :admin_logged_in, only: [:assign, :refresh]
+    before_action :admin_logged_in, only: [:assign, :refresh, :points_initialization]
+    
+    def points_initialization
+        User.where(admin: false, teacher: false).find_each do |user|
+            user.points = 100
+            user.save
+        end
+    end
     
     def assign
         # Before assign courses to students, make sure the remaining # of students for courses

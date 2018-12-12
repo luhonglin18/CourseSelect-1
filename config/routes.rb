@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   
   get 'assignment/assign' => 'course_assignment#assign'
   get 'assignment/refresh' => 'course_assignment#refresh'
+  get 'assignment/points_initialization' => 'course_assignment#points_initialization'
 
 
   # Example resource route with options:
