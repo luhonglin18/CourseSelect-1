@@ -35,6 +35,9 @@ Rails.application.routes.draw do
   get 'sessions/login' => 'sessions#new'
   post 'sessions/login' => 'sessions#create'
   delete 'sessions/logout' => 'sessions#destroy'
+  
+  get 'assignment/assign' => 'course_assignment#assign'
+  get 'assignment/refresh' => 'course_assignment#refresh'
 
 
   # Example resource route with options:
