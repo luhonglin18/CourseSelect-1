@@ -60,20 +60,20 @@ class CoursesController < ApplicationController
   def list
     #-------QiaoCode--------
     #Contemporily close the open option.
-    #@courses = Course.where(:open=>true).paginate(page: params[:page], per_page: 4)
-    tmp=[]
-    current_user.courses.each do |course|
-      tmp<<course.id;
-    end
-    @courses = Course.where.not(id:tmp).paginate(page: params[:page], per_page: 10)
-    #@course = @courses-current_user.courses
+    @courses = Course.where(:open=>true).paginate(page: params[:page], per_page: 4)
     #tmp=[]
-    #@courses.each do |course|
-    #  if course.open==true
-    #    tmp<<course
-    #  end
+    #current_user.courses.each do |course|
+    #  tmp<<course.id;
     #end
-    #@course=tmp
+    #@courses = Course.where.not(id:tmp).paginate(page: params[:page], per_page: 10)
+    @course = @courses-current_user.courses
+    tmp=[]
+    @courses.each do |course|
+      if course.open==true
+        tmp<<course
+      end
+    end
+    @course=tmp
   end
   
   def credit
@@ -89,16 +89,35 @@ class CoursesController < ApplicationController
     @credits/=20
     @courses=tmp
   end
+  def percourse
+     @courses=current_user.courses
+  end
 
   def select
     @course=Course.find_by_id(params[:id])
     if @course.limit_num!=0 and @course.student_num>=@course.limit_num
       flash={:suceess => "选择课程: #{@course.name} 失败，人数已满"}
     else
-      current_user.courses<<@course
-      @course.student_num=@course.student_num+1;
-      @course.save
-      flash={:suceess => "成功选择课程: #{@course.name}"}
+      if current_user.courses.include?@course
+         flash={:warning => "已经选择该课程"}
+      
+      else 
+        @flag=0
+        current_user.courses.each do |f|
+ 		      if f.course_time==@course.course_time
+ 		         @flag=1
+ 		         @tmp=f.name
+ 		      end
+ 		    end
+ 		    if @flag==1
+ 		       flash={:warning => "#{@tmp}与选择课程冲突"}
+ 		    else
+          current_user.courses<<@course
+          @course.student_num=@course.student_num+1;
+          @course.save
+          flash={:suceess => "成功选择课程: #{@course.name}"}
+        end
+      end
     end
     redirect_to courses_path, flash: flash
   end
