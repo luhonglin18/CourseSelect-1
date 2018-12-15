@@ -26,6 +26,10 @@ Rails.application.routes.draw do
     end
     collection do
       get :list
+      get :credit
+      get :percourse
+      
+      
     end
   end
 
