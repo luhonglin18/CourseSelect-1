@@ -86,7 +86,6 @@ class CoursesController < ApplicationController
         tmp<<course
       end
     end
-    @credits/=20
     @courses=tmp
   end
   def percourse
