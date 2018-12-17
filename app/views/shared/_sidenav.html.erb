@@ -63,9 +63,7 @@
 
       </ul>
     </div>
-  </div>
 
-  <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
         <% if teacher_logged_in? %>
@@ -74,7 +72,7 @@
         <% end %>
 
         <% if student_logged_in? %>
-            <a data-toggle="collapse" data-parent="#accordion" href="#GradeCollapse"><span class="glyphicon glyphicon-user"></span>
+            <a data-toggle="collapse" dataa-parent="#accordion" href="#GradeCollapse"><span class="glyphicon glyphicon-user"></span>
               所有成绩</a>
         <% end %>
       </h4>
@@ -104,27 +102,8 @@
      
 
       </div>
+  
     </div>
-    </div>
-      <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <% if student_logged_in? %>
-            <a data-toggle="collapse" data-parent="#accordion" href="#GradeCollapse"><span class="glyphicon glyphicon-user"></span>
-              意愿值竞拍</a>
-        <% end %>
-      </h4>
-    </div>
-     <div id="GradeCollapse" class="panel-collapse collapse <%= "in" %>">
-      <div class="list-group">
-           <% if student_logged_in? %>
-            <li class="list-group-item">
-              <%= link_to grades_path do %>
-                  <span class="glyphicon glyphicon-chevron-right"></span> 意愿值竞拍
-              <% end %>
-            </li>
-        <% end %>
-          </div>
-    </div>
+     
   </div>
 </div>
