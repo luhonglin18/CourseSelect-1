@@ -67,8 +67,10 @@ class CourseAssignmentController < ApplicationController
                     grade = Grade.find_or_create_by(course: selection.course, user: selection.user)
                     course.student_num = course.student_num + 1
                     course.save
-                #else
-                    # Do nothing, because you have to delete the selection anyway
+                else
+                    student=User.find_by(id: selection.user.id)
+                    student.points = student.points + selection.points
+                    student.save
                 end
                 selection.destroy
             end
