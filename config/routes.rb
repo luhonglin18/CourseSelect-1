@@ -26,15 +26,35 @@ Rails.application.routes.draw do
     end
     collection do
       get :list
+      get :credit
+      get :percourse
+      
+      
     end
   end
 
   resources :grades, only: [:index, :update]
-  resources :users
+  resources :users do
+     collection do
+      get :repoints
+    end
+  end
+  
 
   get 'sessions/login' => 'sessions#new'
   post 'sessions/login' => 'sessions#create'
   delete 'sessions/logout' => 'sessions#destroy'
+  
+  get 'assignment/assign' => 'course_assignment#assign'
+  get 'assignment/refresh' => 'course_assignment#refresh'
+  get 'assignment/points_initialization' => 'course_assignment#points_initialization'
+  
+  #resource :admin do
+   # collection do
+   #   get :index
+   # end
+ # end
+  
 
 
   # Example resource route with options:

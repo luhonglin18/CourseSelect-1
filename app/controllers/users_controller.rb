@@ -35,7 +35,25 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_path(new: false), flash: {success: "用户删除"}
   end
-
+  
+  def repoints
+    @prepoints=params[:text1]  
+    @preemails=params[:text2]  
+    @flag=0
+    User.where(admin: false, teacher: false).find_each do |user|
+      if user.email == @preemails
+        @user=user
+        @flag=1
+      end
+    end
+    if @flag==1
+      @user.points+=@prepoints.to_i
+      current_user.points-=@prepoints.to_i
+      current_user.save
+      @user.save
+    end
+  end
+ 
 
 #----------------------------------- students function--------------------
 
@@ -69,5 +87,6 @@ class UsersController < ApplicationController
       redirect_to root_url, flash: {danger: '请登陆'}
     end
   end
+ 
 
 end
