@@ -86,7 +86,6 @@ class CoursesController < ApplicationController
         tmp<<course
       end
     end
-    @credits/=20
     @courses=tmp
   end
   def percourse
@@ -100,7 +99,6 @@ class CoursesController < ApplicationController
     else
       if current_user.courses.include?@course
          flash={:warning => "已经选择该课程"}
-      
       else 
         @flag=0
         current_user.courses.each do |f|
