@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   
   get 'assignment/assign' => 'course_assignment#assign'
   get 'assignment/refresh' => 'course_assignment#refresh'
-  get 'assignment/points_initialization' => 'course_assignment#points_initialization'
+  get 'assignment/initialization' => 'course_assignment#points_initialization'
   
   #resource :admin do
    # collection do
