@@ -12,7 +12,7 @@
 
         <% if student_logged_in? %>
             <li class=<%= "active" if params[:controller]=="courses" %>> <%= link_to "我的课程", courses_path %></li>
-            <li class=<%= "active" if params[:controller]=="users" %>> <%= link_to "我的意愿值", users_path %></li>
+            <li class=<%= "active" if params[:controller]=="users" %>> <%= link_to "意愿值管理", users_path %></li>
         <% elsif teacher_logged_in? %>
             <li class=<%= "active" if params[:controller]=="courses" %>> <%= link_to "课程管理", courses_path %></li>
         <% elsif admin_logged_in? %>
