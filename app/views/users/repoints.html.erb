@@ -1,0 +1,18 @@
+<div class="container">
+    <br><br><br><br>
+    <div class="row">
+        <div class="col-lg-12">
+          <div class="alert alert-info text-center">
+                <b>我的意愿值：<%=current_user.points%></b>
+                <br><br>
+                <% if @flag==0%>
+                    没有该用户，请检查输入邮箱是否正确
+                    <%else%>
+                    转赠失败，该功能正在维护中 QAQ<br>
+                    <b>我的意愿值：<%=current_user.points%></b>
+                    <%end%>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+    <br><br><br><br>
+    <div class="row">
+        <div class="col-lg-12">
+          <div class="alert alert-info text-center">
+                <b>我的意愿值：<%=current_user.points%></b>
+                <br><br>
+                <form action="\users\repoints">  
+                    转赠目标邮箱: 
+                    <br>  
+                    <input type="text" name="text1" placeholder="...@xx.com"/>  
+                    <br>  
+                    转赠数量:
+                    <br>  
+                    <input type="text" name="text2" placeholder="请输入正整数"/>  
+                    <br><br>
+                    <input type="submit" value="确认转赠">      
+                </form>  
+            </div>
+        </div>
+    </div>
+</div>
