@@ -12,11 +12,14 @@
 
         <% if student_logged_in? %>
             <li class=<%= "active" if params[:controller]=="courses" %>> <%= link_to "我的课程", courses_path %></li>
-            <li class=<%= "active" if params[:controller]=="users" %>> <%= link_to "我的意愿值", users_path %></li>
+            <li class=<%= "active" if params[:controller]=="users" %>> <%= link_to "意愿值管理", users_path %></li>
         <% elsif teacher_logged_in? %>
             <li class=<%= "active" if params[:controller]=="courses" %>> <%= link_to "课程管理", courses_path %></li>
         <% elsif admin_logged_in? %>
             <li> <%= link_to "控制面板", rails_admin_path %></li>
+            <li class=<%= "active" if params[:controller]=="course_assignment" %>> <%= link_to "初始化学生意愿值", assignment_initialization_path %></li>
+            <li class=<%= "active" if params[:controller]=="course_assignment" %>> <%= link_to "刷新课程", assignment_refresh_path %></li>
+            <li class=<%= "active" if params[:controller]=="course_assignment" %>> <%= link_to "分配课程", assignment_assign_path %></li>
         <% end %>
 
       </ul>

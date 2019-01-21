@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'bootstrap-sass', '~> 3.3.7'
-# Use ActiveModel has_secure_password
+# Use ActiveModel has_secure_password123
 gem 'bcrypt', '~> 3.1.11'
 gem 'faker', '~> 1.6.3'
 gem 'rails_admin', '~> 0.8.1'
