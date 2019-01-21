@@ -62,7 +62,7 @@ class CourseAssignmentController < ApplicationController
             max_points = Selection.maximum("points")
             Selection.where(points: max_points).find_each do |selection|
                 course = Course.find_by(id: selection.course.id)
-                if course.student_num < course.limit_num
+                if course.student_num < course.limit_num or course.limit_num == 0
                     # Assign student to course
                     grade = Grade.find_or_create_by(course: selection.course, user: selection.user)
                     course.student_num = course.student_num + 1
