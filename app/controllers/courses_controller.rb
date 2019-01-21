@@ -94,7 +94,7 @@ class CoursesController < ApplicationController
 
   def select
     @course=Course.find_by_id(params[:id])
-    if @course.limit_num!=0 and @course.student_num>=@course.limit_num
+    if @course.student_num>=@course.limit_num and @course.limit_num!=0 # 不处理选课上限为0的情况
       flash={:suceess => "选择课程: #{@course.name} 失败，人数已满"}
     else
       if current_user.courses.include?@course
@@ -110,10 +110,21 @@ class CoursesController < ApplicationController
  		    if @flag==1
  		       flash={:warning => "#{@tmp}与选择课程冲突"}
  		    else
-          current_user.courses<<@course
-          @course.student_num=@course.student_num+1;
-          @course.save
-          flash={:suceess => "成功选择课程: #{@course.name}"}
+          bid = params[:bidpoints].to_i
+          if current_user.points < bid
+            flash={:warning => "用户剩余意愿值不足！"}
+          else
+            @selection = Selection.find_or_create_by(user: current_user, course: @course)
+            @selection.points = @selection.points + bid
+            if @course.course_type == "公共必修课"
+              @selection.fixed = true
+            end
+            @selection.save
+            current_user.selections<<@selection
+            current_user.points = current_user.points - bid
+            current_user.save
+            flash={:suceess => "成功参与选课竞拍: #{@course.name} 花费意愿值#{params[:bidpoints]}"}
+          end
         end
       end
     end

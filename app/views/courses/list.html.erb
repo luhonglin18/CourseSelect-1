@@ -31,7 +31,6 @@
 
             <% @courses.each do |course| %>
                 <tr>
-
                   <td><%= course.course_code %></td>
                   <td><%= course.name %></td>
                   <td><%= course.credit %></td>
@@ -41,9 +40,13 @@
                   <td><%= course.teaching_type %></td>
                   <td><%= course.exam_type %></td>
                   <td><%= course.teacher.name %></td>
-                  <td> <input type="text" name="putpoints"/></td>
-                  <td><%= link_to "加入课程", select_course_path(course,:putpoints), class: 'btn-sm btn-info'%></td>
-
+                  <td>
+                    <%= form_tag("/courses/" + course.id.to_s + "/select", method: "get") do %>
+                      <%= hidden_field_tag(:courseid, course.id) %>
+                      <%= text_field_tag(:bidpoints) %>
+                      <%= submit_tag("选课") %>
+                    <% end %>
+                  </td>
                 </tr>
             <% end %>
             </tbody>
